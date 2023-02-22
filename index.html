@@ -1,13 +1,67 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>测试</title>
-</head>
-<body>
-   <span class="doing">施工中……</span>
-</body>
+  </head>
+  <body>
+    <div id="app">
+      <header class="header_bg">
+        <div class="logo">
+            <span class="l-logo">🐟</span>
+        </div>
+      </header>
+      <section class="body_bg">
+        <div class="lottie_ani" ref="lottieContainer"></div>
+        <span class="doing">施工中……</span>
+      </section>
+      <footer class="footer_bg">
+        <span>Copyright © {{ getYear }} 保留所有权利。 </span>
+      <a href="https://beian.miit.gov.cn/#/home">
+          <span>
+            鄂ICP备2023001725号
+          </span>
+        </a>
+        </footer>
+    </div>
+  </body>
+  <script src="./Js/lottie.js" ></script>
+  <script src="./Js/vue.js"></script>
+  <script>
+    const { createApp,mount,ref } = Vue;
+
+    createApp({
+      data() {
+        return {
+          message: "Hello Vue!",
+          lottieUrl:'./assets/load.json'
+        };
+      },
+      mounted(){ 
+        this.loadLottie(this.lottieUrl)
+      },
+      methods:{ 
+        loadLottie(url){
+            lottie.loadAnimation({
+                container: this.$refs.lottieContainer,
+                renderer: 'canvas',
+                loop: 0,
+                autoplay:true,
+                path:url
+            })
+        }
+      },
+      // 计算属性
+      computed: {
+        // 获取今年年份
+        getYear() {
+            let now = new Date
+            return now.getFullYear()
+        }
+      },
+    }).mount("#app");
+  </script>
 </html>

@@ -6,14 +6,81 @@
     transition: color 300ms, background-color 300ms;
     color-scheme: light dark
 }
+.header_bg{
+    width: 100%;
+    height: 6vh;
+    box-sizing: border-box;
+    padding: 5px 3px;
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    backdrop-filter: saturate(180%) blur(20px)   
+}
+
+.l-logo{
+    display: inline-block;
+    transition: transform 2s ease .5s;
+}
+.l-logo:hover{
+    transform:rotate(10deg) translateX(-25px);
+}
+
+.body_bg{ 
+    width: 100%;
+    height: 90vh;
+    position: relative;
+    z-index: 1;
+}
+
+.lottie_ani{
+    width: 100%;
+    height: 200px;
+}
+
+.footer_bg{ 
+    width: 100%;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10px 0;
+    font-size: 12px;
+    position: relative;
+    z-index: 8;
+}
+.footer_bg a{
+    text-decoration: none;
+    color: inherit; 
+}
 @media (prefers-color-scheme: light) {
     html {
-        background-color: white;
+        background-color: #f5f5f7;
+    }
+    .body_bg{
+        background-color: #ffffff;
+    }
+    .header_bg{
+        background-color: rgb(245 245 247 / .8);
+    }
+    .footer_bg{
+        background-color: #f5f5f7;
+        color: #6e6e73;
     }
 } 
 @media (prefers-color-scheme: dark) {
     html {
-        background-color: #232323;
+        background-color: #181819;
+    }
+    .body_bg{
+        background-color: #202020;
+    }
+    .header_bg{
+        background-color:rgb(22 22 23 / .8);
+    }
+    .footer_bg{
+        background-color: #454545;
     }
 }
 .doing{ 
