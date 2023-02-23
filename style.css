@@ -42,7 +42,7 @@
 
 #container {
   --scroll: 0;
-  height: 122vh;
+  height: 105vh;
   margin-top: calc(-1 * (200px + 8vh));
 }
 .sticky {
