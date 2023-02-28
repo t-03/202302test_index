@@ -55,7 +55,8 @@
       data() {
         return {
           message: "Hello Vue!",
-          lottieUrl: "./assets/load.json",
+          lottieUrl: "./assets/loadblock.json",
+          animation: null,
         };
       },
       mounted() {
@@ -63,21 +64,32 @@
       },
       methods: {
         loadLottie(url) {
-          lottie.loadAnimation({
-            container: this.$refs.lottieContainer,
-            renderer: "canvas",
-            loop: 1,
-            autoplay: true,
-            path: url,
-          });
+          lottie
+            .loadAnimation({
+              container: this.$refs.lottieContainer,
+              renderer: "canvas",
+              loop: true,
+              autoplay: true,
+              path: url,
+            })
+            .then((animation) => {
+              this.animation = animation;
+              // animation.play();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         },
       },
       // 计算属性
       computed: {
-        // 获取今年年份
+        // 获取当前年份
         getYear() {
-          let now = new Date();
-          return now.getFullYear();
+          const date = new Date();
+          if (date) {
+            return date.getFullYear();
+          }
+          return null;
         },
       },
     }).mount("#app");
