@@ -37,6 +37,18 @@
           </div>
           <!-- 内容卡片 -->
         </section>
+        <section>
+          <div class="g-wrap">
+            <div class="text">
+              <span>
+                今天阳光明媚，微风轻拂，气温宜人，让人心情愉悦。
+                适合外出活动，呼吸新鲜空气，感受自然的美好，
+                或者在户外找个舒适的角落，晒晒太阳，读读书，度过一个悠闲的午后。
+              </span>
+              <div class="bg"></div>
+            </div>
+          </div>
+        </section>
       </main>
       <footer class="footer_bg">
         <span>Copyright © {{ getYear }} 保留所有权利。 </span>
@@ -48,6 +60,8 @@
   </body>
   <!-- 滚动ani -->
   <script src="./Js/trigger.js"></script>
+  <script src="./Js/ScrollTrigger.min.js"></script>
+  <script src="./Js/gsap.min.js"></script>
   <script src="./Js/lottie.js"></script>
   <script src="./Js/vue.js"></script>
   <script>
@@ -63,24 +77,27 @@
       },
       mounted() {
         this.loadLottie(this.lottieUrl);
+        gsap.registerPlugin(ScrollTrigger);
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: ".g-wrap",
+              start: "top bottom",
+              end: "bottom 1%",
+              scrub: 1,
+            },
+          })
+          .fromTo(".bg", { y: "0%" }, { y: "-75%" }, 0);
       },
       methods: {
         loadLottie(url) {
-          lottie
-            .loadAnimation({
-              container: this.$refs.lottieContainer,
-              renderer: "canvas",
-              loop: true,
-              autoplay: true,
-              path: url,
-            })
-            .then((animation) => {
-              this.animation = animation;
-              // animation.play();
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          lottie.loadAnimation({
+            container: this.$refs.lottieContainer,
+            renderer: "canvas",
+            loop: true,
+            autoplay: true,
+            path: url,
+          });
         },
       },
       // 计算属性
